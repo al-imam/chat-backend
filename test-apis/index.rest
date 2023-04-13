@@ -2,6 +2,16 @@ POST http://localhost:3000/user/
 Content-Type: application/json
 
 {
-  "email": "nirob@gmail.com",
-  "password": "123456_"
+  "email": "example@gmail.com",
+  "password": "$_24^#dd"
+}
+
+###
+
+POST http://localhost:3000/user/login
+Content-Type: application/json
+
+{
+  "email": "example@gmail.com",
+  "password": "$_24^#dd"
 }
