@@ -1,13 +1,14 @@
 import { Request, Response } from "express";
 import userModel from "../models/userModel";
+import getRandomColor from "../utilitys/getRandomColor";
 
 async function singup(req: Request, res: Response) {
   try {
-    const { email, password } = req.body;
-    const user = userModel.create({
+    const { email, password, picture } = req.body;
+    const user = await userModel.create({
       email,
       password,
-      profile: req.body?.picture,
+      profile: picture ?? getRandomColor(email[0]),
     });
     return res.status(201).json(user);
   } catch (error) {
