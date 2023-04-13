@@ -6,13 +6,14 @@
   "scripts": {
     "start:build": "tsc --watch",
     "start:dev": "node --watch dist/app.js",
-    "dev": "concurrently --raw  npm:start:*",
+    "dev": "concurrently --success 'first' --raw npm:start:build npm:start:dev",
     "build": "tsc",
     "start": "node dist/app.js"
   },
   "author": "al-imam",
   "dependencies": {
-    "bcryptjs": "^2.4.3",
+    "@types/bcrypt": "^5.0.0",
+    "bcrypt": "^5.1.0",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "mongoose": "^7.0.3"
