@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import userModel from "../models/userModel";
 import getRandomColor from "../utilitys/getRandomColor";
 import { hashSync } from "bcrypt";
+import jwt from "jsonwebtoken";
 
 async function singup(req: Request, res: Response) {
   try {
@@ -14,7 +15,10 @@ async function singup(req: Request, res: Response) {
 
     return res.status(201).json({
       user: plainUser(user),
-      access_token: "24",
+      access_token: jwt.sign(
+        { id: user._id },
+        process.env.JWT_SECRET as string
+      ),
     });
   } catch (error) {
     console.log(error);
@@ -26,7 +30,7 @@ function plainUser(object: any) {
   return {
     email: object.email,
     profile: object.profile,
-    _id: object._id,
+    id: object._id,
     created: object.created_at,
     updated: object.updated_at,
   };

@@ -1,9 +1,6 @@
 lockfileVersion: '6.0'
 
 dependencies:
-  '@types/bcrypt':
-    specifier: ^5.0.0
-    version: 5.0.0
   bcrypt:
     specifier: ^5.1.0
     version: 5.1.0
@@ -21,9 +18,15 @@ dependencies:
     version: 7.0.3
 
 devDependencies:
+  '@types/bcrypt':
+    specifier: ^5.0.0
+    version: 5.0.0
   '@types/express':
     specifier: ^4.17.17
     version: 4.17.17
+  '@types/jsonwebtoken':
+    specifier: ^9.0.1
+    version: 9.0.1
   '@types/node':
     specifier: ^18.15.11
     version: 18.15.11
@@ -58,7 +61,7 @@ packages:
     resolution: {integrity: sha512-agtcFKaruL8TmcvqbndlqHPSJgsolhf/qPWchFlgnW1gECTN/nKbFcoFnvKAQRFfKbh+BO6A3SWdJu9t+xF3Lw==}
     dependencies:
       '@types/node': 18.15.11
-    dev: false
+    dev: true
 
   /@types/body-parser@1.19.2:
     resolution: {integrity: sha512-ALYone6pm6QmwZoAgeyNksccT9Q4AWZQ6PvfwR37GT6r6FWUPguq6sUmNGSMV2Wr761oQoBxwGGa6DR5o1DC9g==}
@@ -88,6 +91,12 @@ packages:
       '@types/express-serve-static-core': 4.17.33
       '@types/qs': 6.9.7
       '@types/serve-static': 1.15.1
+    dev: true
+
+  /@types/jsonwebtoken@9.0.1:
+    resolution: {integrity: sha512-c5ltxazpWabia/4UzhIoaDcIza4KViOQhdbjRlfcIGVnsE3c3brkz9Z+F/EeJIECOQP7W7US2hNE930cWWkPiw==}
+    dependencies:
+      '@types/node': 18.15.11
     dev: true
 
   /@types/mime@3.0.1:
