@@ -1,8 +1,10 @@
 import express from "express";
 import { config } from "dotenv";
+import connectMongoDB from "./config/db";
 import userRouter from "./routers/userRouter";
 
 config();
+connectMongoDB(process.env.MONGODB_URL);
 const app = express();
 
 app.use(express.json());
