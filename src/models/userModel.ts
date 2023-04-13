@@ -1,4 +1,5 @@
 import { Schema, model } from "mongoose";
+import getRandomColor from "../utilitys/getRandomColor";
 
 const userScheme = new Schema(
   {
@@ -6,7 +7,7 @@ const userScheme = new Schema(
     password: { type: String, required: true },
     profile: {
       type: Schema.Types.Mixed,
-      default: { fg: "#fff", bg: "#000", character: "A" },
+      default: getRandomColor("n"),
     },
   },
   { timestamps: { createdAt: "created_at", updatedAt: "updated_at" } }
