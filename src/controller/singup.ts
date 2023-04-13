@@ -3,6 +3,7 @@ import userModel from "../models/userModel";
 import getRandomColor from "../utilitys/getRandomColor";
 import { hashSync } from "bcrypt";
 import jwt from "jsonwebtoken";
+import plainUser from "../utilitys/getPlainUser";
 
 async function singup(req: Request, res: Response) {
   try {
@@ -24,16 +25,6 @@ async function singup(req: Request, res: Response) {
     console.log(error);
     return res.status(500).send("something went wrong!");
   }
-}
-
-function plainUser(object: any) {
-  return {
-    email: object.email,
-    profile: object.profile,
-    id: object._id,
-    created: object.created_at,
-    updated: object.updated_at,
-  };
 }
 
 export default singup;
