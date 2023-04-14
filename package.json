@@ -5,8 +5,8 @@
   "private": true,
   "scripts": {
     "start:build": "tsc --watch",
-    "start:dev": "node --watch dist/app.js",
-    "dev": "concurrently --success 'first' --raw npm:start:build npm:start:dev",
+    "start:dev": "nodemon dist/app.js",
+    "dev": "concurrently --raw npm:start:*",
     "build": "tsc",
     "start": "node dist/app.js"
   },
@@ -24,6 +24,7 @@
     "@types/jsonwebtoken": "^9.0.1",
     "@types/node": "^18.15.11",
     "concurrently": "^8.0.1",
+    "nodemon": "^2.0.22",
     "typescript": "^5.0.4"
   }
 }
