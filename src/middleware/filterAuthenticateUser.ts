@@ -16,12 +16,18 @@ async function filterAuthenticateUser(
 
       const { id } = verify(token, process.env.JWT_SECRET!) as { id: string };
 
+      if (!id) {
+        return res.status(401).send("Unauthorized");
+      }
+
       req.body._user = await userModel.findById(id).select("-password");
 
       next();
     }
+    return res.status(401).send("Unauthorized");
   } catch (error) {
-    res.status(500);
-    throw new Error("something went wrong!");
+    return res.status(500).send("something went wrong!");
   }
 }
+
+export default filterAuthenticateUser;
