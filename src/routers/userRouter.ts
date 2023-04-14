@@ -6,7 +6,7 @@ import login from "../controller/login";
 
 const userRouter = express.Router();
 
-userRouter.post("/", validateBody, userExist, singup);
+userRouter.post("/singup", validateBody, userExist, singup);
 
 userRouter.post("/login", validateBody, login);
 
