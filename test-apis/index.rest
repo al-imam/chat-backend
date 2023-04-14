@@ -15,3 +15,7 @@ Content-Type: application/json
   "email": "example2@gmail.com",
   "password": "$_24^#dd"
 }
+
+###
+
+GET http://localhost:3000/user/
