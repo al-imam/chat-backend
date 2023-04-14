@@ -12,7 +12,7 @@ async function searchUser(req: Request, res: Response) {
   try {
     const users = await userModel
       .find(returnSearchQuery(req.query.search as string))
-      .find({ _id: { $ne: req.body._user.id } })
+      .find({ _id: { $ne: req.body._user._id } })
       .select("-password");
 
     res.status(200).json(users);

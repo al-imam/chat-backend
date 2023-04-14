@@ -21,11 +21,11 @@ async function filterAuthenticateUser(
       }
 
       req.body._user = await userModel.findById(id).select("-password");
-
-      next();
+      return next();
     }
     return res.status(401).send("Unauthorized");
   } catch (error) {
+    console.log(error);
     return res.status(500).send("something went wrong!");
   }
 }
