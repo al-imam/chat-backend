@@ -2,7 +2,7 @@ POST http://localhost:3000/user/singup
 Content-Type: application/json
 
 {
-  "email": "example@gmail.com",
+  "email": "gfgsdfgdfg@gmail.com",
   "password": "$_24^#dd"
 }
 
@@ -12,10 +12,11 @@ POST http://localhost:3000/user/login
 Content-Type: application/json
 
 {
-  "email": "example2@gmail.com",
+  "email": "example@gmail.com",
   "password": "$_24^#dd"
 }
 
 ###
 
 GET http://localhost:3000/user/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0Mzg2ZjU0YWEwZGNmYjQ4Y2ZlNTg2NiIsImlhdCI6MTY4MTUwMjkzMn0.pEIqVXVEaMUAQmPDMJQk91_1R8VWAJ1p2FEEOTwo2is
