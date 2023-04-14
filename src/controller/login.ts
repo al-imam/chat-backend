@@ -17,7 +17,7 @@ async function login(req: Request, res: Response) {
       });
     }
 
-    res.status(403).send("Authentication failed!");
+    res.status(403).send("email and password not match");
   } catch (error) {
     console.log(error);
     return res.status(500).send("something went wrong!");
