@@ -10,16 +10,11 @@ async function login(req: Request, res: Response) {
 
     const user = await userModel.findOne({ email });
 
-    if (user) {
-      if (compareSync(password, user.password)) {
-        return res.status(200).json({
-          user: plainUser(user),
-          access_token: jwt.sign(
-            { id: user._id },
-            process.env.JWT_SECRET as string
-          ),
-        });
-      }
+    if (user && compareSync(password, user.password)) {
+      return res.status(200).json({
+        user: plainUser(user),
+        access_token: jwt.sign({ id: user._id }, process.env.JWT_SECRET!),
+      });
     }
 
     res.status(403).send("Authentication failed!");
