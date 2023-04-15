@@ -4,7 +4,7 @@ import userModel from "../models/userModel";
 
 async function openChat(req: Request, res: Response) {
   try {
-    const chats = await chatModel
+    const chat = await chatModel
       .findOne({
         is_group_chat: false,
         $and: [
@@ -15,22 +15,20 @@ async function openChat(req: Request, res: Response) {
       .populate("users", "-password")
       .populate("latest_message");
 
-    const populate_chats = await userModel.populate(chats, {
-      path: "latest_message.sender",
-      select: "email profile",
-    });
+    if (chat) {
+      const populate_chats = await userModel.populate(chat, {
+        path: "latest_message.sender",
+        select: "email profile",
+      });
 
-    if (populate_chats) {
       return res.status(200).json(populate_chats);
     }
 
-    const newChat = (
-      await chatModel.create({
-        chat_name: "sender",
-        is_group_chat: false,
-        users: [req.body._user._id, req.body.id],
-      })
-    ).populate("users", "-password");
+    const newChat = await chatModel.create({
+      chat_name: "sender",
+      is_group_chat: false,
+      users: [req.body._user._id, req.body.id],
+    });
 
     return res.status(201).json(newChat);
   } catch (error) {
