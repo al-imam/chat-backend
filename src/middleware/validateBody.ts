@@ -5,7 +5,7 @@ async function validateBody(req: Request, res: Response, next: NextFunction) {
     const { password, email } = req.body;
 
     if (password === undefined || email === undefined) {
-      return res.status(403).send("Email and password not found");
+      return res.status(400).send("Email and password not found");
     }
     return next();
   } catch (error) {
