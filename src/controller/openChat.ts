@@ -4,7 +4,7 @@ import userModel from "../models/userModel";
 
 async function openChat(req: Request, res: Response) {
   try {
-    const chat = await chatModel
+    const openChat = await chatModel
       .findOne({
         is_group_chat: false,
         $and: [
@@ -12,29 +12,35 @@ async function openChat(req: Request, res: Response) {
           { users: { $elemMatch: { $eq: req.body.id } } },
         ],
       })
-      .populate("users", "-password")
-      .populate("latest_message");
+      .populate([
+        { path: "users", model: "User", select: "-password" },
+        {
+          path: "latest_message",
+          model: "Message",
+          populate: [{ path: "sender", model: "User", select: "-password" }],
+        },
+      ]);
 
-    if (chat) {
-      const populate_chats = await userModel.populate(chat, {
-        path: "latest_message.sender",
-        select: "email profile",
-      });
-
-      return res.status(200).json(populate_chats);
+    if (openChat) {
+      return res.status(200).json(openChat);
     }
 
-    const newChat = await chatModel.create({
+    const createChat = await chatModel.create({
       chat_name: "sender",
       is_group_chat: false,
       users: [req.body._user._id, req.body.id],
     });
 
-    const populated_newChat = await chatModel
-      .findById(newChat._id)
-      .populate("users", "-password");
+    const fullChat = await chatModel.findById(createChat._id).populate([
+      { path: "users", model: "User", select: "-password" },
+      {
+        path: "latest_message",
+        model: "Message",
+        populate: [{ path: "sender", model: "User", select: "-password" }],
+      },
+    ]);
 
-    return res.status(201).json(populated_newChat);
+    return res.status(201).json(fullChat);
   } catch (error) {
     console.log({ error });
     return res.status(500).send("something went wrong!");
