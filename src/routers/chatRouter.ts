@@ -7,6 +7,6 @@ import checkId from "../middleware/checkId";
 const chatRouter = express.Router();
 
 chatRouter.post("/", filterAuthenticateUser, checkId, openChat);
-chatRouter.get("/", filterAuthenticateUser, checkId, getAllChatByID);
+chatRouter.get("/", filterAuthenticateUser, getAllChatByID);
 
 export default chatRouter;
