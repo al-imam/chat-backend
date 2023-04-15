@@ -14,7 +14,7 @@ POST http://localhost:3000/user/login
 Content-Type: application/json
 
 {
-  "email": "aaa@aaa.aaa",
+  "email": "ccc@ccc.ccc",
   "password": "#__1234"
 }
 
@@ -34,5 +34,12 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0M2E3NDU1M
 Content-Type: application/json
 
 {
-  "id": "643ad8a53fc93f0fa742659f" 
+  "id": "643a749720bf06aaf57fc461" 
 }
+
+###
+
+
+GET  http://localhost:3000/chat/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0M2FkOGE1M2ZjOTNmMGZhNzQyNjU5ZiIsImlhdCI6MTY4MTU4MDQ2NH0.bol8kf10t9W-06voSz1s_YjVjW-w5mrIEbBe0CY_NFQ
+Content-Type: application/json
