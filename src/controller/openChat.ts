@@ -4,12 +4,16 @@ import userModel from "../models/userModel";
 
 async function openChat(req: Request, res: Response) {
   try {
+    if (!req.body.id) {
+      return res.status(400).send("request body is not provided");
+    }
+
     const chats = await chatModel
       .findOne({
         is_group_chat: false,
         $and: [
           { users: { $elemMatch: { $eq: req.body._user._id } } },
-          { users: { $elemMatch: { $eq: req.params.userId } } },
+          { users: { $elemMatch: { $eq: req.body.id } } },
         ],
       })
       .populate("users", "-password")
@@ -20,9 +24,8 @@ async function openChat(req: Request, res: Response) {
       select: "email profile",
     });
 
-    console.log({ populate_chats });
     if (populate_chats) {
-      return res.status(200).json(chats);
+      return res.status(200).json(populate_chats);
     }
 
     const newChat = (

@@ -5,7 +5,7 @@ import getAllChatByID from "../controller/getAllChatById";
 
 const chatRouter = express.Router();
 
-chatRouter.post("/:userId", filterAuthenticateUser, openChat);
-chatRouter.get("/:userId", filterAuthenticateUser, getAllChatByID);
+chatRouter.post("/", filterAuthenticateUser, openChat);
+chatRouter.get("/", filterAuthenticateUser, getAllChatByID);
 
 export default chatRouter;

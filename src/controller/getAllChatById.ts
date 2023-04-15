@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 
-async function getAllChatByID(req: Request, res: Response) {
+async function getAllChatById(req: Request, res: Response) {
   try {
   } catch (error) {
     console.log({ error });
@@ -8,4 +8,4 @@ async function getAllChatByID(req: Request, res: Response) {
   }
 }
 
-export default getAllChatByID;
+export default getAllChatById;
