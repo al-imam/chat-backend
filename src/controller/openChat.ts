@@ -4,10 +4,6 @@ import userModel from "../models/userModel";
 
 async function openChat(req: Request, res: Response) {
   try {
-    if (!req.body.id) {
-      return res.status(400).send("request body is not provided");
-    }
-
     const chats = await chatModel
       .findOne({
         is_group_chat: false,
@@ -32,7 +28,7 @@ async function openChat(req: Request, res: Response) {
       await chatModel.create({
         chat_name: "sender",
         is_group_chat: false,
-        users: [req.body._user._id, req.params.userId],
+        users: [req.body._user._id, req.body.id],
       })
     ).populate("users", "-password");
 
