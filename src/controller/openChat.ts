@@ -30,7 +30,11 @@ async function openChat(req: Request, res: Response) {
       users: [req.body._user._id, req.body.id],
     });
 
-    return res.status(201).json(newChat);
+    const populated_newChat = await chatModel
+      .findById(newChat._id)
+      .populate("users", "-password");
+
+    return res.status(201).json(populated_newChat);
   } catch (error) {
     console.log({ error });
     return res.status(500).send("something went wrong!");
