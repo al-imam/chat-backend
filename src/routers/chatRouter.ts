@@ -2,11 +2,16 @@ import express from "express";
 import filterAuthenticateUser from "../middleware/filterAuthenticateUser";
 import openChat from "../controller/openChat";
 import getAllChatByID from "../controller/getAllChatById";
-import checkId from "../middleware/checkId";
+import validateProperties from "../middleware/validateProperties";
 
 const chatRouter = express.Router();
 
-chatRouter.post("/", filterAuthenticateUser, checkId, openChat);
+chatRouter.post(
+  "/",
+  filterAuthenticateUser,
+  validateProperties(["id"]),
+  openChat
+);
 chatRouter.get("/", filterAuthenticateUser, getAllChatByID);
 
 export default chatRouter;
