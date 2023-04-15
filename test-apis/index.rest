@@ -2,7 +2,7 @@ POST http://localhost:3000/user/singup
 Content-Type: application/json
 
 {
-  "email": "bbb@bbb.bbb",
+  "email": "ccc@ccc.ccc",
   "password": "#__1234"
 }
 
@@ -28,6 +28,11 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0M2E3NDU1M
 
 ###
 
-# open chat
-POST  http://localhost:3000/chat/643a749720bf06aaf57fc461
+
+POST  http://localhost:3000/chat/
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0M2E3NDU1MjBiZjA2YWFmNTdmYzQ0ZSIsImlhdCI6MTY4MTU2NjMzNX0.7ZlErqSJjlRSNsdjQKMB_TL-tpwyMOJvCnX5R7imVR0
+Content-Type: application/json
+
+{
+  "id": "643ad8a53fc93f0fa742659f" 
+}
