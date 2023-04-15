@@ -8,8 +8,8 @@ const chatRouter = express.Router();
 
 chatRouter.post(
   "/",
-  filterAuthenticateUser,
   validateProperties(["id"]),
+  filterAuthenticateUser,
   openChat
 );
 chatRouter.get("/", filterAuthenticateUser, getAllChatByID);
