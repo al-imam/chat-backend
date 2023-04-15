@@ -2,21 +2,32 @@ POST http://localhost:3000/user/singup
 Content-Type: application/json
 
 {
-  "email": "gfgsdfgdfg@gmail.com",
-  "password": "$_24^#dd"
+  "email": "bbb@bbb.bbb",
+  "password": "#__1234"
 }
 
+
 ###
+
 
 POST http://localhost:3000/user/login
 Content-Type: application/json
 
 {
-  "email": "example@gmail.com",
-  "password": "$_24^#dd"
+  "email": "aaa@aaa.aaa",
+  "password": "#__1234"
 }
+
 
 ###
 
+
 GET http://localhost:3000/user/
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0Mzg2ZjU0YWEwZGNmYjQ4Y2ZlNTg2NiIsImlhdCI6MTY4MTUwMjkzMn0.pEIqVXVEaMUAQmPDMJQk91_1R8VWAJ1p2FEEOTwo2is
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0M2E3NDU1MjBiZjA2YWFmNTdmYzQ0ZSIsImlhdCI6MTY4MTU2NjMzNX0.7ZlErqSJjlRSNsdjQKMB_TL-tpwyMOJvCnX5R7imVR0
+
+
+###
+
+# open chat
+POST  http://localhost:3000/chat/643a749720bf06aaf57fc461
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0M2E3NDU1MjBiZjA2YWFmNTdmYzQ0ZSIsImlhdCI6MTY4MTU2NjMzNX0.7ZlErqSJjlRSNsdjQKMB_TL-tpwyMOJvCnX5R7imVR0
