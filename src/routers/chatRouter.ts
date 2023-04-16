@@ -12,6 +12,7 @@ chatRouter.post(
   filterAuthenticateUser,
   openChat
 );
+
 chatRouter.get("/", filterAuthenticateUser, getAllChatByID);
 
 export default chatRouter;
