@@ -6,6 +6,7 @@ import validateProperties from "../middleware/validateProperties";
 import parseUsersArray from "../middleware/parseUsersArray";
 import createGroupChat from "../controller/createGroupChat";
 import renameGroup from "../controller/renameGroup";
+import filterAdmin from "../middleware/filterAdmin";
 
 const chatRouter = express.Router();
 
@@ -36,13 +37,15 @@ chatRouter.post(
 chatRouter.post(
   "/group/add",
   validateProperties(["groupId", "userId"]),
-  filterAuthenticateUser
+  filterAuthenticateUser,
+  filterAdmin
 );
 
 chatRouter.post(
   "/group/remove",
   validateProperties(["groupId", "userId"]),
-  filterAuthenticateUser
+  filterAuthenticateUser,
+  filterAdmin
 );
 
 export default chatRouter;
