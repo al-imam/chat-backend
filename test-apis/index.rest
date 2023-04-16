@@ -14,7 +14,7 @@ POST http://localhost:3000/user/login
 Content-Type: application/json
 
 {
-  "email": "ccc@ccc.ccc",
+  "email": "aaa@aaa.aaa",
   "password": "#__1234"
 }
 
@@ -43,3 +43,16 @@ Content-Type: application/json
 GET  http://localhost:3000/chat/
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0M2FkOGE1M2ZjOTNmMGZhNzQyNjU5ZiIsImlhdCI6MTY4MTU4MDQ2NH0.bol8kf10t9W-06voSz1s_YjVjW-w5mrIEbBe0CY_NFQ
 Content-Type: application/json
+
+
+###
+
+
+POST   http://localhost:3000/chat/group
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0M2FkOGE1M2ZjOTNmMGZhNzQyNjU5ZiIsImlhdCI6MTY4MTU4MDQ2NH0.bol8kf10t9W-06voSz1s_YjVjW-w5mrIEbBe0CY_NFQ
+Content-Type: application/json
+
+{
+  "userArray": "[\"643a749720bf06aaf57fc461\", \"643a745520bf06aaf57fc44e\"]",
+  "groupName": "my-group"
+}
