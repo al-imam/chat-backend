@@ -33,4 +33,16 @@ chatRouter.post(
   renameGroup
 );
 
+chatRouter.post(
+  "/group/add",
+  validateProperties(["groupId", "userId"]),
+  filterAuthenticateUser
+);
+
+chatRouter.post(
+  "/group/remove",
+  validateProperties(["groupId", "userId"]),
+  filterAuthenticateUser
+);
+
 export default chatRouter;
