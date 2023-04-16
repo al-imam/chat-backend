@@ -5,6 +5,7 @@ import getAllChatByID from "../controller/getAllChatById";
 import validateProperties from "../middleware/validateProperties";
 import parseUsersArray from "../middleware/parseUsersArray";
 import createGroupChat from "../controller/createGroupChat";
+import renameGroup from "../controller/renameGroup";
 
 const chatRouter = express.Router();
 
@@ -23,6 +24,13 @@ chatRouter.post(
   filterAuthenticateUser,
   parseUsersArray,
   createGroupChat
+);
+
+chatRouter.post(
+  "/group/rename",
+  validateProperties(["groupId", "groupName"]),
+  filterAuthenticateUser,
+  renameGroup
 );
 
 export default chatRouter;
