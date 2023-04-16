@@ -17,7 +17,17 @@ async function renameGroup(req: Request, res: Response) {
       });
     }
 
-    return res.status(201).json(group);
+    const renamedGroup = await chatModel.findById(group._id).populate([
+      { path: "users", model: "User", select: "-password" },
+      { path: "group_admin", model: "User", select: "-password" },
+      {
+        path: "latest_message",
+        model: "Message",
+        populate: [{ path: "sender", model: "User", select: "-password" }],
+      },
+    ]);
+
+    return res.status(201).json(renamedGroup);
   } catch (error) {
     console.log({ error });
     return res.status(500).json({
