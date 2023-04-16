@@ -15,4 +15,6 @@ chatRouter.post(
 
 chatRouter.get("/", filterAuthenticateUser, getAllChatByID);
 
+chatRouter.post("/group", filterAuthenticateUser);
+
 export default chatRouter;
