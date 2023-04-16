@@ -6,7 +6,7 @@ async function renameGroup(req: Request, res: Response) {
     const { groupId, updatedGroupName } = req.body;
     const group = await chatModel.findByIdAndUpdate(
       groupId,
-      { group_name: updatedGroupName },
+      { chat_name: updatedGroupName },
       { new: true }
     );
 

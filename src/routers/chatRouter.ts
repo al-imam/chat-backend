@@ -28,7 +28,7 @@ chatRouter.post(
 
 chatRouter.post(
   "/group/rename",
-  validateProperties(["groupId", "groupName"]),
+  validateProperties(["groupId", "updatedGroupName"]),
   filterAuthenticateUser,
   renameGroup
 );
