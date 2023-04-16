@@ -4,6 +4,7 @@ import openChat from "../controller/openChat";
 import getAllChatByID from "../controller/getAllChatById";
 import validateProperties from "../middleware/validateProperties";
 import parseUsersArray from "../middleware/parseUsersArray";
+import createGroupChat from "../controller/createGroupChat";
 
 const chatRouter = express.Router();
 
@@ -19,8 +20,9 @@ chatRouter.get("/", filterAuthenticateUser, getAllChatByID);
 chatRouter.post(
   "/group",
   validateProperties(["userArray", "groupName"]),
+  filterAuthenticateUser,
   parseUsersArray,
-  filterAuthenticateUser
+  createGroupChat
 );
 
 export default chatRouter;

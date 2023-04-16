@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from "express";
 
 function parseUsersArray(req: Request, res: Response, next: NextFunction) {
   try {
-    const userArray = parseJson(req.body.userArray);
+    const userArray = parseJson(req.body.userArray, req.body._user._id);
 
     if (userArray) {
       req.body._userArray = userArray;
@@ -22,10 +22,11 @@ function parseUsersArray(req: Request, res: Response, next: NextFunction) {
   }
 }
 
-function parseJson(array: string): string[] | null {
+function parseJson(array: string, id: string): string[] | null {
   try {
     const arr = JSON.parse(array);
-    if (!Array.isArray(arr) || arr.length <= 2) return null;
+    if (!Array.isArray(arr) || arr.length < 2) return null;
+    arr.push(id.toString());
     return arr;
   } catch {
     return null;
