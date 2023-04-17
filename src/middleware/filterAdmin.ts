@@ -3,12 +3,9 @@ import chatModel from "../models/chatModel";
 
 async function filterAdmin(req: Request, res: Response, next: NextFunction) {
   try {
-    const exist = await chatModel.findOne({
-      group_admin: req.body._user._id,
-      _id: req.body.groupId,
-    });
+    const exist = await chatModel.findById(req.body.groupId);
 
-    if (exist) return next();
+    if (exist && exist.group_admin?.equals(req.body._user._id)) return next();
 
     return res.status(401).json({
       code: "not-admin",
@@ -16,9 +13,9 @@ async function filterAdmin(req: Request, res: Response, next: NextFunction) {
     });
   } catch (error) {
     console.log({ error });
-    return res.status(500).json({
-      code: "check-admin",
-      message: "Internal server error!",
+    return res.status(400).json({
+      code: "group-not-found",
+      message: "no group exist in specified groupId",
     });
   }
 }
