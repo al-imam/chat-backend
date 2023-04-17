@@ -9,6 +9,7 @@ import renameGroup from "../controller/renameGroup";
 import filterAdmin from "../middleware/filterAdmin";
 import addUserToGroup from "../controller/addUserToGroup";
 import removeUserToGroup from "../controller/removeUnserToGroup";
+import validateObjectId from "../middleware/validateObjectId";
 
 const chatRouter = express.Router();
 
@@ -39,6 +40,7 @@ chatRouter.post(
 chatRouter.post(
   "/group/add",
   validateProperties(["groupId", "userId"]),
+  validateObjectId(["groupId", "userId"]),
   filterAuthenticateUser,
   filterAdmin,
   addUserToGroup
@@ -47,6 +49,7 @@ chatRouter.post(
 chatRouter.post(
   "/group/remove",
   validateProperties(["groupId", "userId"]),
+  validateObjectId(["groupId", "userId"]),
   filterAuthenticateUser,
   filterAdmin,
   removeUserToGroup
