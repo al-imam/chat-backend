@@ -73,8 +73,34 @@ Content-Type: application/json
 
 ###
 
-
+// None admin request for remove user - failed
 POST http://localhost:3000/chat/group/remove
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0M2E3NDU1MjBiZjA2YWFmNTdmYzQ0ZSIsImlhdCI6MTY4MTcwMDY2M30.gHVjLuT0qlLe_maCzSkzEC7Lfgelm4FSXqXY36GlUPQ
+Content-Type: application/json
+
+{
+  "groupId": "643b7589978fc31bd4fdadda",
+  "userId": "643a749720bf06aaf57fc461"
+}
+
+
+###
+
+// admin request for remove user - success
+POST http://localhost:3000/chat/group/remove
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0M2FkOGE1M2ZjOTNmMGZhNzQyNjU5ZiIsImlhdCI6MTY4MTU4MDQ2NH0.bol8kf10t9W-06voSz1s_YjVjW-w5mrIEbBe0CY_NFQ
+Content-Type: application/json
+
+{
+  "groupId": "643b7589978fc31bd4fdadda",
+  "userId": "643a749720bf06aaf57fc461"
+}
+
+
+###
+
+// admin request for add user - success
+POST http://localhost:3000/chat/group/add
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0M2FkOGE1M2ZjOTNmMGZhNzQyNjU5ZiIsImlhdCI6MTY4MTU4MDQ2NH0.bol8kf10t9W-06voSz1s_YjVjW-w5mrIEbBe0CY_NFQ
 Content-Type: application/json
 
