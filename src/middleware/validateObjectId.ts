@@ -1,15 +1,15 @@
 import { Request, Response, NextFunction } from "express";
 import { Types } from "mongoose";
 
-const isValidId = Types.ObjectId.isValid;
-
 function validateObjectId(properties: string[]) {
   return (req: Request, res: Response, next: NextFunction) => {
     try {
-      const noneValidObjectIds: string[] = [];
+      const noneValidObjectIds: object[] = [];
 
       properties.forEach((property) => {
-        if (!isValidId(property)) noneValidObjectIds.push(property);
+        if (!Types.ObjectId.isValid(req.body[property])) {
+          noneValidObjectIds.push({ [property]: req.body[property] });
+        }
       });
 
       if (noneValidObjectIds.length > 0) {
