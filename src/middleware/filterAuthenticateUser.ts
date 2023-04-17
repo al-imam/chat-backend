@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import verifyJwtToken from "../utilitys/verifyJwtToken";
 import userModel from "../models/userModel";
+import wrap from "../utilitys/wrap";
 
 async function filterAuthenticateUser(
   { headers: { authorization }, body }: Request,
@@ -30,4 +31,7 @@ async function filterAuthenticateUser(
   });
 }
 
-export default filterAuthenticateUser;
+export default wrap(filterAuthenticateUser, {
+  code: "authorization-failed",
+  message: "Internal server error",
+});

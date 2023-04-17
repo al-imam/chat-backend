@@ -1,24 +1,19 @@
 import { Request, Response, NextFunction } from "express";
 import userModel from "../models/userModel";
+import wrap from "../utilitys/wrap";
 
 async function userExist(req: Request, res: Response, next: NextFunction) {
-  try {
-    const exist = await userModel.findOne({ email: req.body.email });
+  const exist = await userModel.findOne({ email: req.body.email });
 
-    if (exist) {
-      return res.status(500).json({
-        code: "user-already-exist",
-        message: "mail is already in use",
-      });
-    }
+  if (!exist) return next();
 
-    next();
-  } catch (error) {
-    return res.status(500).json({
-      code: "user-exist",
-      message: "Internal server error!",
-    });
-  }
+  return res.status(400).json({
+    code: "email-exist",
+    message: "email is already in user",
+  });
 }
 
-export default userExist;
+export default wrap(userExist, {
+  code: "check-users",
+  message: "Internal server error",
+});
