@@ -1,13 +1,26 @@
 import { Request, Response } from "express";
 import chatModel from "../models/chatModel";
+import wrap from "../utilitys/wrap";
 
 async function openChat(req: Request, res: Response) {
   const openChatByUsersId = await chatModel
     .findOne({
       is_group_chat: false,
       $and: [
-        { users: { $elemMatch: { $eq: req.body._user._id } } },
-        { users: { $elemMatch: { $eq: req.body.id } } },
+        {
+          users: {
+            $elemMatch: {
+              $eq: req.body._user._id,
+            },
+          },
+        },
+        {
+          users: {
+            $elemMatch: {
+              $eq: req.body.id,
+            },
+          },
+        },
       ],
     })
     .populate([
@@ -61,4 +74,7 @@ async function openChat(req: Request, res: Response) {
   return res.status(201).json(populateNewChat);
 }
 
-export default openChat;
+export default wrap(openChat, {
+  code: "open-chat",
+  message: "Internal server error",
+});
