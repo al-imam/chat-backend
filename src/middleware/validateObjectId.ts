@@ -15,6 +15,7 @@ function validateObjectId(properties: string[]) {
     if (noneValidObjectIds.length === 0) return next();
 
     return res.status(400).json({
+      code: "invalid-object-id",
       message: "some object id not valid",
       noneValidObjectIds,
     });
