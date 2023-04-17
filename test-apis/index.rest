@@ -74,13 +74,13 @@ Content-Type: application/json
 ###
 
 
-POST http://localhost:3000/chat/group/add
+POST http://localhost:3000/chat/group/remove
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0M2FkOGE1M2ZjOTNmMGZhNzQyNjU5ZiIsImlhdCI6MTY4MTU4MDQ2NH0.bol8kf10t9W-06voSz1s_YjVjW-w5mrIEbBe0CY_NFQ
 Content-Type: application/json
 
 {
   "groupId": "643b7589978fc31bd4fdadda",
-  "userId": "tor-hedar-group"
+  "userId": "643a749720bf06aaf57fc461"
 }
 
 
