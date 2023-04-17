@@ -9,14 +9,7 @@ async function removeUserToGroup(req: Request, res: Response) {
       { new: true }
     );
 
-    if (!removedUsers) {
-      return res.status(400).json({
-        code: "group-not-exist",
-        message: "can't find group by specified groupId",
-      });
-    }
-
-    const pc = await chatModel.findById(removedUsers._id).populate([
+    const pc = await chatModel.findById(removedUsers?._id).populate([
       { path: "users", model: "User", select: "-password" },
       { path: "group_admin", model: "User", select: "-password" },
       {
@@ -29,9 +22,9 @@ async function removeUserToGroup(req: Request, res: Response) {
     return res.status(200).json(pc);
   } catch (error) {
     console.log({ error });
-    return res.status(500).json({
-      code: "remove-user-to-group",
-      message: "Internal server error!",
+    return res.status(400).json({
+      code: "user-not-exist",
+      message: "can not find user",
     });
   }
 }
