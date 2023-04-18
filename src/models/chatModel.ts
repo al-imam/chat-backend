@@ -40,6 +40,14 @@ const chatSchema = new Schema(
           { new: true }
         );
       },
+
+      findGroupByIdAndAddUser(groupId: Types.ObjectId, userId: Types.ObjectId) {
+        return this.findByIdAndUpdate(
+          groupId,
+          { $push: { users: userId } },
+          { new: true }
+        );
+      },
     },
   }
 );

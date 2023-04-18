@@ -3,10 +3,9 @@ import chatModel from "../models/chatModel";
 import wrap from "../utilitys/wrap";
 
 async function addUserToGroup(req: Request, res: Response) {
-  const updatedUsers = await chatModel.findByIdAndUpdate(
+  const updatedUsers = await chatModel.findGroupByIdAndAddUser(
     req.body.groupId,
-    { $push: { users: req.body.userId } },
-    { new: true }
+    req.body.userId
   );
 
   if (!updatedUsers) {
