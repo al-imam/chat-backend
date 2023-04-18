@@ -1,18 +1,6 @@
-import { Schema, model, Model } from "mongoose";
+import { Schema, model, Model, HydratedDocument } from "mongoose";
 
-interface ChatSchemaInterface {
-  is_group_chat: boolean;
-  users: string[];
-  chat_name?: string;
-  latest_message?: string;
-  group_admin?: string;
-}
-
-interface ChatModel extends Model<ChatSchemaInterface> {
-  staticMethod(): number;
-}
-
-const chatSchema = new Schema<ChatSchemaInterface, ChatModel>(
+const chatSchema = new Schema(
   {
     chat_name: { type: String, trim: true },
     is_group_chat: { type: Boolean, default: false },
@@ -23,7 +11,36 @@ const chatSchema = new Schema<ChatSchemaInterface, ChatModel>(
     },
     group_admin: { type: Schema.Types.ObjectId, ref: "User" },
   },
-  { timestamps: { createdAt: "created_at", updatedAt: "updated_at" } }
+  {
+    timestamps: { createdAt: "created_at", updatedAt: "updated_at" },
+    statics: {
+      findChatByIdAndPopulate(id: string) {
+        return this.findById(id).populate([
+          {
+            path: "users",
+            model: "User",
+            select: "-password",
+          },
+          {
+            path: "group_admin",
+            model: "User",
+            select: "-password",
+          },
+          {
+            path: "latest_message",
+            model: "Message",
+            populate: [
+              {
+                path: "sender",
+                model: "User",
+                select: "-password",
+              },
+            ],
+          },
+        ]);
+      },
+    },
+  }
 );
 
-export default model<ChatSchemaInterface, ChatModel>("Chat", chatSchema);
+export default model("Chat", chatSchema);
