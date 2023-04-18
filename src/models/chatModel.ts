@@ -32,6 +32,14 @@ const chatSchema = new Schema(
       findChatByIdAndPopulate(id: Types.ObjectId) {
         return this.findById(id).populate(populateChatShape);
       },
+
+      findGroupByIdAndRename(groupId: Types.ObjectId, newName: string) {
+        return this.findByIdAndUpdate(
+          groupId,
+          { chat_name: newName },
+          { new: true }
+        );
+      },
     },
   }
 );
