@@ -13,6 +13,19 @@ const chatSchema = new Schema(
   },
   {
     timestamps: { createdAt: "created_at", updatedAt: "updated_at" },
+    query: {
+      populateChat() {
+        return this.populate([
+          { path: "users", model: "User", select: "-password" },
+          { path: "group_admin", model: "User", select: "-password" },
+          {
+            path: "latest_message",
+            model: "Message",
+            populate: [{ path: "sender", model: "User", select: "-password" }],
+          },
+        ]);
+      },
+    },
     statics: {
       findChatByIdAndPopulate(id: Types.ObjectId) {
         return this.findById(id).populate([
