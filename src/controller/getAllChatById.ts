@@ -5,15 +5,7 @@ import wrap from "../utilitys/wrap";
 async function getAllChatById(req: Request, res: Response) {
   const chats = await chatModel
     .find({ users: { $elemMatch: { $eq: req.body._user._id } } })
-    .populate([
-      { path: "users", model: "User", select: "-password" },
-      { path: "group_admin", model: "User", select: "-password" },
-      {
-        path: "latest_message",
-        model: "Message",
-        populate: [{ path: "sender", model: "User", select: "-password" }],
-      },
-    ])
+    .populateChat()
     .sort({ updated_at: -1 });
 
   res.status(200).json(chats);

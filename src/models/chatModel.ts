@@ -1,4 +1,14 @@
-import { Schema, model, Model, HydratedDocument, Types } from "mongoose";
+import { Schema, model, Types } from "mongoose";
+
+const populateChatShape = [
+  { path: "users", model: "User", select: "-password" },
+  { path: "group_admin", model: "User", select: "-password" },
+  {
+    path: "latest_message",
+    model: "Message",
+    populate: [{ path: "sender", model: "User", select: "-password" }],
+  },
+];
 
 const chatSchema = new Schema(
   {
@@ -15,42 +25,12 @@ const chatSchema = new Schema(
     timestamps: { createdAt: "created_at", updatedAt: "updated_at" },
     query: {
       populateChat() {
-        return this.populate([
-          { path: "users", model: "User", select: "-password" },
-          { path: "group_admin", model: "User", select: "-password" },
-          {
-            path: "latest_message",
-            model: "Message",
-            populate: [{ path: "sender", model: "User", select: "-password" }],
-          },
-        ]);
+        return this.populate(populateChatShape);
       },
     },
     statics: {
       findChatByIdAndPopulate(id: Types.ObjectId) {
-        return this.findById(id).populate([
-          {
-            path: "users",
-            model: "User",
-            select: "-password",
-          },
-          {
-            path: "group_admin",
-            model: "User",
-            select: "-password",
-          },
-          {
-            path: "latest_message",
-            model: "Message",
-            populate: [
-              {
-                path: "sender",
-                model: "User",
-                select: "-password",
-              },
-            ],
-          },
-        ]);
+        return this.findById(id).populate(populateChatShape);
       },
     },
   }
