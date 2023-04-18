@@ -118,7 +118,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0M2U4N2IxZ
 Content-Type: application/json
 
 {
-  "message": "hello",
+  "message": "first message from admin",
   "chatId": "643e887de07d67abe5c1bb3f"
 }
 
@@ -131,7 +131,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0M2U4Nzk5M
 Content-Type: application/json
 
 {
-  "message": "hi",
+  "message": "to?",
   "chatId": "643e887de07d67abe5c1bb3f"
 }
 
