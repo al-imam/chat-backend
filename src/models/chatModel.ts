@@ -1,6 +1,18 @@
-import { Schema, model } from "mongoose";
+import { Schema, model, Model } from "mongoose";
 
-const chatSchema = new Schema(
+interface ChatSchemaInterface {
+  is_group_chat: boolean;
+  users: string[];
+  chat_name?: string;
+  latest_message?: string;
+  group_admin?: string;
+}
+
+interface ChatModel extends Model<ChatSchemaInterface> {
+  staticMethod(): number;
+}
+
+const chatSchema = new Schema<ChatSchemaInterface, ChatModel>(
   {
     chat_name: { type: String, trim: true },
     is_group_chat: { type: Boolean, default: false },
@@ -14,4 +26,4 @@ const chatSchema = new Schema(
   { timestamps: { createdAt: "created_at", updatedAt: "updated_at" } }
 );
 
-export default model("Chat", chatSchema);
+export default model<ChatSchemaInterface, ChatModel>("Chat", chatSchema);
