@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import userModel from "../models/userModel";
+import wrap from "../utilitys/wrap";
 
 function returnSearchQuery(search: string | undefined) {
   if (!search) return {};
@@ -9,17 +10,15 @@ function returnSearchQuery(search: string | undefined) {
 }
 
 async function searchUser(req: Request, res: Response) {
-  try {
-    const users = await userModel
-      .find(returnSearchQuery(req.query.search as string))
-      .find({ _id: { $ne: req.body._user._id } })
-      .select("-password");
+  const users = await userModel
+    .find(returnSearchQuery(req.query.search as string))
+    .find({ _id: { $ne: req.body._user._id } })
+    .select("-password");
 
-    res.status(200).json(users);
-  } catch (error) {
-    console.log(error);
-    return res.status(500).send("something went wrong!");
-  }
+  res.status(200).json(users);
 }
 
-export default searchUser;
+export default wrap(searchUser, {
+  code: "search-user",
+  message: "Internal server error",
+});
