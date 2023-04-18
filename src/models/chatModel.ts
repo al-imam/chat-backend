@@ -48,6 +48,17 @@ const chatSchema = new Schema(
           { new: true }
         );
       },
+
+      findGroupByIdAndRemoveUser(
+        groupId: Types.ObjectId,
+        userId: Types.ObjectId
+      ) {
+        return this.findByIdAndUpdate(
+          groupId,
+          { $pull: { users: userId } },
+          { new: true }
+        );
+      },
     },
   }
 );

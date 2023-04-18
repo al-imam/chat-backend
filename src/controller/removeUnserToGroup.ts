@@ -3,10 +3,9 @@ import chatModel from "../models/chatModel";
 import wrap from "../utilitys/wrap";
 
 async function removeUserToGroup(req: Request, res: Response) {
-  const removedUsers = await chatModel.findByIdAndUpdate(
+  const removedUsers = await chatModel.findGroupByIdAndRemoveUser(
     req.body.groupId,
-    { $pull: { users: req.body.userId } },
-    { new: true }
+    req.body.userId
   );
 
   if (!removedUsers) {
