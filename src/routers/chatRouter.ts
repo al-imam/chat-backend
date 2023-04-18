@@ -8,7 +8,7 @@ import createGroupChat from "../controller/createGroupChat";
 import renameGroup from "../controller/renameGroup";
 import filterAdmin from "../middleware/filterAdmin";
 import addUserToGroup from "../controller/addUserToGroup";
-import removeUserToGroup from "../controller/removeUnserToGroup";
+import removeUserToGroup from "../controller/removeUserToGroup";
 import validateObjectId from "../middleware/validateObjectId";
 
 const chatRouter = express.Router();
@@ -16,6 +16,7 @@ const chatRouter = express.Router();
 chatRouter.post(
   "/",
   validateProperties(["id"]),
+  validateObjectId(["id"]),
   filterAuthenticateUser,
   openChat
 );
@@ -33,6 +34,7 @@ chatRouter.post(
 chatRouter.post(
   "/group/rename",
   validateProperties(["groupId", "updatedGroupName"]),
+  validateObjectId(["groupId"]),
   filterAuthenticateUser,
   renameGroup
 );
