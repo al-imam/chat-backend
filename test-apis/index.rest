@@ -136,3 +136,15 @@ Content-Type: application/json
 }
 
 
+###
+
+
+Get http://localhost:3000/message
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0M2U4Nzk5MTRhNjQxZTRhNDFmY2JlYSIsImlhdCI6MTY4MTgyMjg1Mn0.8dZmLGi7dz4t4q8VU-H7xxjlKw24wYtihqVk-6CafX0
+Content-Type: application/json
+
+{
+  "chatId": "643e887de07d67abe5c1bb3f"
+}
+
+
