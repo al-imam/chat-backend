@@ -19,25 +19,11 @@ async function renameGroup(
     });
   }
 
-  const populateGroup = await chatModel.findById(updatedGroup._id).populate([
-    {
-      path: "users",
-      model: "User",
-      select: "-password",
-    },
-    {
-      path: "group_admin",
-      model: "User",
-      select: "-password",
-    },
-    {
-      path: "latest_message",
-      model: "Message",
-      populate: [{ path: "sender", model: "User", select: "-password" }],
-    },
-  ]);
+  const newPopulatedGroup = await chatModel.findChatByIdAndPopulate(
+    updatedGroup._id
+  );
 
-  return res.status(200).json(populateGroup);
+  return res.status(200).json(newPopulatedGroup);
 }
 
 export default wrap(renameGroup, {

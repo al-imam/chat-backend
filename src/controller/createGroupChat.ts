@@ -10,23 +10,7 @@ async function createGroupChat(req: Request, res: Response) {
     users: req.body._userArray,
   });
 
-  const populatedGroup = await chatModel.findById(group._id).populate([
-    {
-      path: "users",
-      model: "User",
-      select: "-password",
-    },
-    {
-      path: "group_admin",
-      model: "User",
-      select: "-password",
-    },
-    {
-      path: "latest_message",
-      model: "Message",
-      populate: [{ path: "sender", model: "User", select: "-password" }],
-    },
-  ]);
+  const populatedGroup = await chatModel.findChatByIdAndPopulate(group._id);
 
   return res.status(201).json(populatedGroup);
 }

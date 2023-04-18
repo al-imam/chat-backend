@@ -16,17 +16,11 @@ async function removeUserToGroup(req: Request, res: Response) {
     });
   }
 
-  const pc = await chatModel.findById(removedUsers._id).populate([
-    { path: "users", model: "User", select: "-password" },
-    { path: "group_admin", model: "User", select: "-password" },
-    {
-      path: "latest_message",
-      model: "Message",
-      populate: [{ path: "sender", model: "User", select: "-password" }],
-    },
-  ]);
+  const newGroupUsers = await chatModel.findChatByIdAndPopulate(
+    removedUsers._id
+  );
 
-  return res.status(200).json(pc);
+  return res.status(200).json(newGroupUsers);
 }
 
 export default wrap(removeUserToGroup, {

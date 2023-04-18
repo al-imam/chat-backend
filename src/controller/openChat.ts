@@ -52,26 +52,11 @@ async function openChat(req: Request, res: Response) {
     users: [req.body._user._id, req.body.id],
   });
 
-  const populateNewChat = await chatModel.findById(createChat._id).populate([
-    {
-      path: "users",
-      model: "User",
-      select: "-password",
-    },
-    {
-      path: "latest_message",
-      model: "Message",
-      populate: [
-        {
-          path: "sender",
-          model: "User",
-          select: "-password",
-        },
-      ],
-    },
-  ]);
+  const newPopulateChat = await chatModel.findChatByIdAndPopulate(
+    createChat._id
+  );
 
-  return res.status(201).json(populateNewChat);
+  return res.status(201).json(newPopulateChat);
 }
 
 export default wrap(openChat, {
