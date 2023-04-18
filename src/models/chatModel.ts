@@ -69,6 +69,20 @@ const chatSchema = new Schema(
           ],
         }).populate(populateChatShape);
       },
+
+      async createSingleChat(
+        userIdOne: Types.ObjectId,
+        userIdTwo: Types.ObjectId
+      ) {
+        const chat = await this.create({
+          chat_name: "sender",
+          is_group_chat: false,
+          users: [userIdOne, userIdTwo],
+        });
+
+        /* @ts-ignore */
+        return this.findChatByIdAndPopulate(chat._id);
+      },
     },
   }
 );

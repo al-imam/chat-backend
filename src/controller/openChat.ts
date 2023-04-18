@@ -12,17 +12,12 @@ async function openChat(req: Request, res: Response) {
     return res.status(200).json(openChatByUsersId);
   }
 
-  const createChat = await chatModel.create({
-    chat_name: "sender",
-    is_group_chat: false,
-    users: [req.body._user._id, req.body.id],
-  });
-
-  const newPopulateChat = await chatModel.findChatByIdAndPopulate(
-    createChat._id
+  const newChat = await chatModel.createSingleChat(
+    req.body._user._id,
+    req.body.id
   );
 
-  return res.status(201).json(newPopulateChat);
+  return res.status(201).json(newChat);
 }
 
 export default wrap(openChat, {
