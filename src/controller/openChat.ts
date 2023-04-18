@@ -3,44 +3,10 @@ import chatModel from "../models/chatModel";
 import wrap from "../utilitys/wrap";
 
 async function openChat(req: Request, res: Response) {
-  const openChatByUsersId = await chatModel
-    .findOne({
-      is_group_chat: false,
-      $and: [
-        {
-          users: {
-            $elemMatch: {
-              $eq: req.body._user._id,
-            },
-          },
-        },
-        {
-          users: {
-            $elemMatch: {
-              $eq: req.body.id,
-            },
-          },
-        },
-      ],
-    })
-    .populate([
-      {
-        path: "users",
-        model: "User",
-        select: "-password",
-      },
-      {
-        path: "latest_message",
-        model: "Message",
-        populate: [
-          {
-            path: "sender",
-            model: "User",
-            select: "-password",
-          },
-        ],
-      },
-    ]);
+  const openChatByUsersId = await chatModel.findSingleChat(
+    req.body._user._id,
+    req.body.id
+  );
 
   if (openChatByUsersId) {
     return res.status(200).json(openChatByUsersId);

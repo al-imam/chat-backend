@@ -59,6 +59,16 @@ const chatSchema = new Schema(
           { new: true }
         );
       },
+
+      findSingleChat(userIdOne: Types.ObjectId, userIdTwo: Types.ObjectId) {
+        return this.findOne({
+          is_group_chat: false,
+          $and: [
+            { users: { $elemMatch: { $eq: userIdOne } } },
+            { users: { $elemMatch: { $eq: userIdTwo } } },
+          ],
+        }).populate(populateChatShape);
+      },
     },
   }
 );
