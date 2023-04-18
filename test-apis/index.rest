@@ -67,7 +67,7 @@ Content-Type: application/json
 
 {
   "groupId": "643b7589978fc31bd4fdadda",
-  "updatedGroupName": "tor-hedar-group"
+  "updatedGroupName": "tor-baler-group"
 }
 
 

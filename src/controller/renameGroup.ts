@@ -6,13 +6,12 @@ async function renameGroup(
   { body: { groupId, updatedGroupName } }: Request,
   res: Response
 ) {
-  const updatedGroup = await chatModel.findByIdAndUpdate(
+  const renamedGroup = await chatModel.findGroupByIdAndRename(
     groupId,
-    { chat_name: updatedGroupName },
-    { new: true }
+    updatedGroupName
   );
 
-  if (!updatedGroup) {
+  if (!renamedGroup) {
     return res.status(400).json({
       code: "group-not-exist",
       message: "can't find group by specified groupId",
@@ -20,7 +19,7 @@ async function renameGroup(
   }
 
   const newPopulatedGroup = await chatModel.findChatByIdAndPopulate(
-    updatedGroup._id
+    renamedGroup._id
   );
 
   return res.status(200).json(newPopulatedGroup);
