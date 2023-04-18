@@ -3,7 +3,7 @@ import chatModel from "../models/chatModel";
 import wrap from "../utilitys/wrap";
 
 async function filterAdmin(req: Request, res: Response, next: NextFunction) {
-  const exist = await chatModel.findById("eer");
+  const exist = await chatModel.findById(req.body.groupId);
 
   if (!exist) {
     return res.status(400).json({

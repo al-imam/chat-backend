@@ -1,4 +1,4 @@
-import { Schema, model, Model, HydratedDocument } from "mongoose";
+import { Schema, model, Model, HydratedDocument, Types } from "mongoose";
 
 const chatSchema = new Schema(
   {
@@ -14,7 +14,7 @@ const chatSchema = new Schema(
   {
     timestamps: { createdAt: "created_at", updatedAt: "updated_at" },
     statics: {
-      findChatByIdAndPopulate(id: string) {
+      findChatByIdAndPopulate(id: Types.ObjectId) {
         return this.findById(id).populate([
           {
             path: "users",

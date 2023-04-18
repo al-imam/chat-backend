@@ -16,23 +16,9 @@ async function addUserToGroup(req: Request, res: Response) {
     });
   }
 
-  const userCollection = await chatModel.findById(updatedUsers._id).populate([
-    {
-      path: "users",
-      model: "User",
-      select: "-password",
-    },
-    {
-      path: "group_admin",
-      model: "User",
-      select: "-password",
-    },
-    {
-      path: "latest_message",
-      model: "Message",
-      populate: [{ path: "sender", model: "User", select: "-password" }],
-    },
-  ]);
+  const userCollection = await chatModel.findChatByIdAndPopulate(
+    updatedUsers._id
+  );
 
   return res.status(200).json(userCollection);
 }
