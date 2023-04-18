@@ -2,8 +2,8 @@ POST http://localhost:3000/user/singup
 Content-Type: application/json
 
 {
-  "email": "ccc@ccc.ccc",
-  "password": "#__1234"
+  "email": "al@noreplay.com",
+  "password": "#123456"
 }
 
 
@@ -14,8 +14,8 @@ POST http://localhost:3000/user/login
 Content-Type: application/json
 
 {
-  "email": "aaa@aaa.aaa",
-  "password": "#__1234"
+  "email": "alimam@noreplay.com",
+  "password": "#123456"
 }
 
 
@@ -23,25 +23,25 @@ Content-Type: application/json
 
 
 GET http://localhost:3000/user/
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0M2E3NDU1MjBiZjA2YWFmNTdmYzQ0ZSIsImlhdCI6MTY4MTU2NjMzNX0.7ZlErqSJjlRSNsdjQKMB_TL-tpwyMOJvCnX5R7imVR0
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0M2U4N2IxZTUwYThlNTdjODYzYWY3OCIsImlhdCI6MTY4MTgxOTU2OX0.qGtWsKkEDvq5qtV8BMD9qAlnRFjKMv3ffWO5_yRskNY
 
 
 ###
 
 
 POST  http://localhost:3000/chat/
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0M2E3NDU1MjBiZjA2YWFmNTdmYzQ0ZSIsImlhdCI6MTY4MTU2NjMzNX0.7ZlErqSJjlRSNsdjQKMB_TL-tpwyMOJvCnX5R7imVR0
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0M2U4N2IxZTUwYThlNTdjODYzYWY3OCIsImlhdCI6MTY4MTgxOTU2OX0.qGtWsKkEDvq5qtV8BMD9qAlnRFjKMv3ffWO5_yRskNY
 Content-Type: application/json
 
 {
-  "id": "643a749720bf06aaf57fc461" 
+  "id": "643e879914a641e4a41fcbea" 
 }
 
 ###
 
 
 GET  http://localhost:3000/chat/
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0M2FkOGE1M2ZjOTNmMGZhNzQyNjU5ZiIsImlhdCI6MTY4MTU4MDQ2NH0.bol8kf10t9W-06voSz1s_YjVjW-w5mrIEbBe0CY_NFQ
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0M2U4N2IxZTUwYThlNTdjODYzYWY3OCIsImlhdCI6MTY4MTgxOTU2OX0.qGtWsKkEDvq5qtV8BMD9qAlnRFjKMv3ffWO5_yRskNY
 Content-Type: application/json
 
 
@@ -49,12 +49,12 @@ Content-Type: application/json
 
 
 POST http://localhost:3000/chat/group
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0M2FkOGE1M2ZjOTNmMGZhNzQyNjU5ZiIsImlhdCI6MTY4MTU4MDQ2NH0.bol8kf10t9W-06voSz1s_YjVjW-w5mrIEbBe0CY_NFQ
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0M2U4N2IxZTUwYThlNTdjODYzYWY3OCIsImlhdCI6MTY4MTgxOTU2OX0.qGtWsKkEDvq5qtV8BMD9qAlnRFjKMv3ffWO5_yRskNY
 Content-Type: application/json
 
 {
-  "userArray": "[\"643a749720bf06aaf57fc461\", \"643a745520bf06aaf57fc44e\"]",
-  "groupName": "my-group"
+  "userArray": "[\"643e87ccc52268e4c0bb8e75\", \"643e8713da47d89ef0d09b6c\"]",
+  "groupName": "private-chat-group"
 }
 
 
@@ -62,12 +62,12 @@ Content-Type: application/json
 
 
 POST http://localhost:3000/chat/group/rename
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0M2FkOGE1M2ZjOTNmMGZhNzQyNjU5ZiIsImlhdCI6MTY4MTU4MDQ2NH0.bol8kf10t9W-06voSz1s_YjVjW-w5mrIEbBe0CY_NFQ
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0M2U4N2IxZTUwYThlNTdjODYzYWY3OCIsImlhdCI6MTY4MTgxOTU2OX0.qGtWsKkEDvq5qtV8BMD9qAlnRFjKMv3ffWO5_yRskNY
 Content-Type: application/json
 
 {
-  "groupId": "643b7589978fc31bd4fdadda",
-  "updatedGroupName": "tor-baler-group"
+  "groupId": "643e88e1e07d67abe5c1bb47",
+  "updatedGroupName": "private-group"
 }
 
 
@@ -75,12 +75,12 @@ Content-Type: application/json
 
 // None admin request for remove user - failed
 POST http://localhost:3000/chat/group/remove
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0M2E3NDU1MjBiZjA2YWFmNTdmYzQ0ZSIsImlhdCI6MTY4MTcwMDY2M30.gHVjLuT0qlLe_maCzSkzEC7Lfgelm4FSXqXY36GlUPQ
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0M2U4NzEzZGE0N2Q4OWVmMGQwOWI2YyIsImlhdCI6MTY4MTgxOTQxMX0.c3Ho3Z6qy24FbgEUzNyRkReKliBDzkjsPWhZb_bH8pk
 Content-Type: application/json
 
 {
-  "groupId": "643b7589978fc31bd4fdadda",
-  "userId": "643a749720bf06aaf57fc461"
+  "groupId": "643e88e1e07d67abe5c1bb47",
+  "userId": "643e879914a641e4a41fcbea"
 }
 
 
@@ -88,12 +88,12 @@ Content-Type: application/json
 
 // admin request for remove user - success
 POST http://localhost:3000/chat/group/remove
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0M2FkOGE1M2ZjOTNmMGZhNzQyNjU5ZiIsImlhdCI6MTY4MTU4MDQ2NH0.bol8kf10t9W-06voSz1s_YjVjW-w5mrIEbBe0CY_NFQ
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0M2U4N2IxZTUwYThlNTdjODYzYWY3OCIsImlhdCI6MTY4MTgxOTU2OX0.qGtWsKkEDvq5qtV8BMD9qAlnRFjKMv3ffWO5_yRskNY
 Content-Type: application/json
 
 {
-  "groupId": "643b7589978fc31bd4fdadda",
-  "userId": "643a749720bf06aaf57fc461"
+  "groupId": "643e88e1e07d67abe5c1bb47",
+  "userId": "643e879914a641e4a41fcbea"
 }
 
 
@@ -101,12 +101,12 @@ Content-Type: application/json
 
 // admin request for add user - success
 POST http://localhost:3000/chat/group/add
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0M2FkOGE1M2ZjOTNmMGZhNzQyNjU5ZiIsImlhdCI6MTY4MTU4MDQ2NH0.bol8kf10t9W-06voSz1s_YjVjW-w5mrIEbBe0CY_NFQ
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0M2U4N2IxZTUwYThlNTdjODYzYWY3OCIsImlhdCI6MTY4MTgxOTU2OX0.qGtWsKkEDvq5qtV8BMD9qAlnRFjKMv3ffWO5_yRskNY
 Content-Type: application/json
 
 {
-  "groupId": "643b7589978fc31bd4fdadda",
-  "userId": "643a749720bf06aaf57fc461"
+  "groupId": "643e88e1e07d67abe5c1bb47",
+  "userId": "643e879914a641e4a41fcbea"
 }
 
 
