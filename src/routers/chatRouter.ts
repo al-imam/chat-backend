@@ -10,6 +10,7 @@ import filterAdmin from "../middleware/filterAdmin";
 import addUserToGroup from "../controller/addUserToGroup";
 import removeUserToGroup from "../controller/removeUserToGroup";
 import validateObjectId from "../middleware/validateObjectId";
+import userExistAndNotAlreadyAdded from "../middleware/userExistAndNotAlreadyAdded";
 
 const chatRouter = express.Router();
 
@@ -44,6 +45,7 @@ chatRouter.post(
   validateProperties(["groupId", "userId"]),
   validateObjectId(["groupId", "userId"]),
   filterAuthenticateUser,
+  userExistAndNotAlreadyAdded,
   filterAdmin,
   addUserToGroup
 );
