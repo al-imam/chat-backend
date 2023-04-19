@@ -1,3 +1,4 @@
+// singup new user
 POST http://localhost:3000/user/singup
 Content-Type: application/json
 
@@ -10,6 +11,7 @@ Content-Type: application/json
 ###
 
 
+// login user
 POST http://localhost:3000/user/login
 Content-Type: application/json
 
@@ -22,6 +24,7 @@ Content-Type: application/json
 ###
 
 
+// get all users
 GET http://localhost:3000/user/
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0M2U4N2IxZTUwYThlNTdjODYzYWY3OCIsImlhdCI6MTY4MTgxOTU2OX0.qGtWsKkEDvq5qtV8BMD9qAlnRFjKMv3ffWO5_yRskNY
 
@@ -29,17 +32,19 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0M2U4N2IxZ
 ###
 
 
+// open chat with userId and authenticate userId
 POST  http://localhost:3000/chat/
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0M2U4N2IxZTUwYThlNTdjODYzYWY3OCIsImlhdCI6MTY4MTgxOTU2OX0.qGtWsKkEDvq5qtV8BMD9qAlnRFjKMv3ffWO5_yRskNY
 Content-Type: application/json
 
 {
-  "id": "643e879914a641e4a41fcbea" 
+  "userId": "643e879914a641e4a41fcbea" 
 }
 
 ###
 
 
+// get all chat where authenticated user is exist 
 GET  http://localhost:3000/chat/
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0M2U4N2IxZTUwYThlNTdjODYzYWY3OCIsImlhdCI6MTY4MTgxOTU2OX0.qGtWsKkEDvq5qtV8BMD9qAlnRFjKMv3ffWO5_yRskNY
 Content-Type: application/json
@@ -48,6 +53,7 @@ Content-Type: application/json
 ###
 
 
+// created new group where authenticated user is set to admin 
 POST http://localhost:3000/chat/group
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0M2U4N2IxZTUwYThlNTdjODYzYWY3OCIsImlhdCI6MTY4MTgxOTU2OX0.qGtWsKkEDvq5qtV8BMD9qAlnRFjKMv3ffWO5_yRskNY
 Content-Type: application/json
@@ -61,6 +67,7 @@ Content-Type: application/json
 ###
 
 
+// rename group any user can change group name
 POST http://localhost:3000/chat/group/rename
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0M2U4N2IxZTUwYThlNTdjODYzYWY3OCIsImlhdCI6MTY4MTgxOTU2OX0.qGtWsKkEDvq5qtV8BMD9qAlnRFjKMv3ffWO5_yRskNY
 Content-Type: application/json
@@ -113,6 +120,7 @@ Content-Type: application/json
 ###
 
 
+// send message by chatId
 POST http://localhost:3000/message
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0M2U4N2IxZTUwYThlNTdjODYzYWY3OCIsImlhdCI6MTY4MTgyMjY3OH0.h1j3hVp9mjMTfjyz7x-k1FFqzpLtigBJaNO-y-T6yHw
 Content-Type: application/json
@@ -126,6 +134,7 @@ Content-Type: application/json
 ###
 
 
+// send message by chatId (duplicated for testing)
 POST http://localhost:3000/message
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0M2U4Nzk5MTRhNjQxZTRhNDFmY2JlYSIsImlhdCI6MTY4MTgyMjg1Mn0.8dZmLGi7dz4t4q8VU-H7xxjlKw24wYtihqVk-6CafX0
 Content-Type: application/json
@@ -139,13 +148,14 @@ Content-Type: application/json
 ###
 
 
+// get all message using chatId also we can set limit
 Get http://localhost:3000/message
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0M2U4Nzk5MTRhNjQxZTRhNDFmY2JlYSIsImlhdCI6MTY4MTgyMjg1Mn0.8dZmLGi7dz4t4q8VU-H7xxjlKw24wYtihqVk-6CafX0
 Content-Type: application/json
 
 {
   "chatId": "643e887de07d67abe5c1bb3f",
-  "limit": "1"
+  "limit": "10"
 }
 
 
