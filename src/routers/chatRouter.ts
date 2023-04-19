@@ -16,8 +16,8 @@ const chatRouter = express.Router();
 
 chatRouter.post(
   "/",
-  validateProperties(["id"]),
-  validateObjectId(["id"]),
+  validateProperties(["userId"]),
+  validateObjectId(["userId"]),
   filterAuthenticateUser,
   openChat
 );

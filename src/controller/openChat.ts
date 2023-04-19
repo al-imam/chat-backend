@@ -5,7 +5,7 @@ import wrap from "../utilitys/wrap";
 async function openChat(req: Request, res: Response) {
   const openChatByUsersId = await chatModel.findSingleChat(
     req.body._user._id,
-    req.body.id
+    req.body.userId
   );
 
   if (openChatByUsersId) {
@@ -14,7 +14,7 @@ async function openChat(req: Request, res: Response) {
 
   const newChat = await chatModel.createSingleChat(
     req.body._user._id,
-    req.body.id
+    req.body.userId
   );
 
   return res.status(201).json(newChat);
